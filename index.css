@@ -1,0 +1,41 @@
+/*
+  Tailwind CSSを使用しているため、このファイルではグローバルなベーススタイルや
+  Tailwindの @apply ディレクティブを使用したカスタムクラスを定義します。
+*/
+
+/* 1. Tailwindの基本ディレクティブの読み込み */
+/* @tailwind base; は通常、カスタマイズされたベーススタイルを挿入するために使用されますが、
+   ここではCDN版のTailwindを使用しているため、Tailwindのベース設定はCDN側で行われています。 */
+/* CDN利用時は、@tailwind rulesは不要か、カスタムコンポーネントのために使用します。 */
+
+/* 2. カスタム変数の定義 (もしあれば) */
+:root {
+  /* ここにカスタムCSS変数を定義できます (例: --primary-color: #e63946;) */
+}
+
+/* 3. グローバルなスタイルの調整 */
+
+/* body の背景と色の定義は index.html の <style> タグで行われているため、ここでは不要です。 */
+
+/* box-sizing のリセットは、モダンな開発で推奨されます。 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* モバイルでのタッチ操作時に視覚的なフィードバックを改善する (App.tsx の active:scale-95 などとの組み合わせ) */
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 4. Tailwindの @apply を使ったカスタムクラス (オプション) */
+/*
+.btn-primary {
+  @apply bg-dart-red text-white font-bold py-2 px-4 rounded transition-colors duration-200 hover:bg-red-700;
+}
+*/
+
+/* 5. index.html に残っている未使用のリンクの処理 */
+/* index.htmlに記述されている <link rel="stylesheet" href="/index.css"> が存在するため、
+   このファイルがロードされることで警告が解消されます。中身は最小限で構いません。 */

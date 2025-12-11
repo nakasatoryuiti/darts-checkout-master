@@ -1,0 +1,5 @@
+{
+  "name": "Darts Checkout Master",
+  "description": "An intelligent darts checkout calculator that shows all possible arrangements for a given score, powered by Gemini for strategic coaching advice.",
+  "requestFramePermissions": []
+}
