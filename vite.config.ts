@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
     return {
       // 🚨 【最重要】この行を追加・修正します 。🚨
       // リポジトリ名に合わせて修正: darts-checkout-master1.2
-      base: '/darts-checkout-master1.2/', 
+      base: '/darts-checkout-master/', 
       
       server: {
         port: 3000,
