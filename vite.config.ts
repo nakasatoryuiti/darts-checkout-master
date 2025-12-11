@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
     
     return {
       // 🚨 baseを直書きすることで、確実にパスを設定 🚨
-      // base: '/darts-checkout-master/', 
+      base: './', 
       
       server: {
         port: 3000,
