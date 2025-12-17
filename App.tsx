@@ -54,6 +54,21 @@ const App: React.FC = () => {
     return groups;
   }, [paths]);
 
+{/* Mode Selector - Single Outを追加 */}
+<div className="grid grid-cols-3 gap-2 p-1 bg-neutral-900 rounded-xl border border-neutral-800">
+  {(['single_out', 'double_out', 'master_out'] as GameMode[]).map((mode) => (
+    <button
+      key={mode}
+      onClick={() => setGameMode(mode)}
+      className={`py-2 px-1 rounded-lg text-[10px] font-bold transition-all ${
+        gameMode === mode ? 'bg-neutral-800 text-white shadow-sm' : 'text-neutral-500 hover:text-neutral-300'
+      }`}
+    >
+      {mode.replace('_', ' ').toUpperCase()}
+    </button>
+  ))}
+</div>
+
   return (
     <div className="min-h-screen bg-neutral-950 p-4 sm:p-8 flex flex-col items-center font-sans text-neutral-100">
       <div className="max-w-md w-full space-y-6">
