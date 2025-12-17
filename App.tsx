@@ -54,25 +54,9 @@ const App: React.FC = () => {
     return groups;
   }, [paths]);
 
-{/* Mode Selector - Single Outを追加 */}
-<div className="grid grid-cols-3 gap-2 p-1 bg-neutral-900 rounded-xl border border-neutral-800">
-  {(['single_out', 'double_out', 'master_out'] as GameMode[]).map((mode) => (
-    <button
-      key={mode}
-      onClick={() => setGameMode(mode)}
-      className={`py-2 px-1 rounded-lg text-[10px] font-bold transition-all ${
-        gameMode === mode ? 'bg-neutral-800 text-white shadow-sm' : 'text-neutral-500 hover:text-neutral-300'
-      }`}
-    >
-      {mode.replace('_', ' ').toUpperCase()}
-    </button>
-  ))}
-</div>
-
   return (
     <div className="min-h-screen bg-neutral-950 p-4 sm:p-8 flex flex-col items-center font-sans text-neutral-100">
       <div className="max-w-md w-full space-y-6">
-        {/* Header */}
         <div className="text-center space-y-2">
           <div className="inline-flex p-3 bg-red-600/20 rounded-2xl mb-2">
             <Target className="w-8 h-8 text-red-500" />
@@ -81,13 +65,13 @@ const App: React.FC = () => {
           <p className="text-neutral-400 text-sm font-medium">Master your finish from 1 to 240</p>
         </div>
 
-        {/* Mode Selector */}
-        <div className="grid grid-cols-2 gap-2 p-1 bg-neutral-900 rounded-xl border border-neutral-800">
-          {(['double_out', 'master_out'] as GameMode[]).map((mode) => (
+        {/* ✅ モードセレクター：ここが確実に3つになっている必要があります */}
+        <div className="grid grid-cols-3 gap-2 p-1 bg-neutral-900 rounded-xl border border-neutral-800">
+          {(['single_out', 'double_out', 'master_out'] as GameMode[]).map((mode) => (
             <button
               key={mode}
               onClick={() => setGameMode(mode)}
-              className={`py-2 px-4 rounded-lg text-xs font-bold transition-all ${
+              className={`py-2 px-1 rounded-lg text-[10px] font-bold transition-all ${
                 gameMode === mode ? 'bg-neutral-800 text-white shadow-sm' : 'text-neutral-500 hover:text-neutral-300'
               }`}
             >
@@ -96,23 +80,20 @@ const App: React.FC = () => {
           ))}
         </div>
 
-        {/* Score Display */}
         <div className="bg-neutral-900 rounded-2xl p-6 border border-neutral-800 shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 right-0 p-4 opacity-10">
             <Hexagon className="w-20 h-20" />
           </div>
           <div className="relative">
-            <label className="text-xs font-bold text-neutral-500 uppercase tracking-widest">Current Score</label>
+            <label className="text-xs font-bold text-neutral-500 uppercase tracking-widest">Score</label>
             <div className="text-6xl font-black text-white mt-1 tabular-nums">
               {inputScore || '000'}
             </div>
           </div>
         </div>
 
-        {/* Keypad */}
         <Keypad onKeyPress={handleKeyPress} onDelete={handleDelete} onClear={handleClear} inputScore={inputScore} />
 
-        {/* AI Advice Button */}
         {isValidScore && (
           <button
             onClick={handleGetAdvice}
@@ -124,17 +105,15 @@ const App: React.FC = () => {
           </button>
         )}
 
-        {/* Advice Result */}
         {advice && (
           <div className="bg-blue-600/10 border border-blue-500/30 rounded-xl p-4 animate-in fade-in slide-in-from-top-2">
-            <div className="flex gap-3">
-              <div className="mt-1"><BrainCircuit className="w-5 h-5 text-blue-400" /></div>
-              <p className="text-sm leading-relaxed text-blue-100">{advice}</p>
+            <div className="flex gap-3 text-sm text-blue-100">
+              <BrainCircuit className="w-5 h-5 text-blue-400 shrink-0" />
+              <p>{advice}</p>
             </div>
           </div>
         )}
 
-        {/* Checkout Paths */}
         <div className="space-y-4 pt-4">
           {[1, 2, 3].map((num) => (
             groupedPaths[num].length > 0 && (
@@ -146,14 +125,11 @@ const App: React.FC = () => {
                 </div>
                 <div className="space-y-2">
                   {groupedPaths[num].map((path, idx) => (
-                    <div key={idx} className="bg-neutral-900/50 border border-neutral-800 p-3 rounded-xl flex items-center justify-between group hover:border-neutral-700 transition-colors">
+                    <div key={idx} className="bg-neutral-900/50 border border-neutral-800 p-3 rounded-xl flex items-center justify-between">
                       <div className="flex gap-2">
                         {path.darts.map((dart, dIdx) => (
                           <DartTag key={dIdx} dart={dart} />
                         ))}
-                      </div>
-                      <div className="text-[10px] font-bold text-neutral-600 group-hover:text-neutral-400">
-                        {path.method}
                       </div>
                     </div>
                   ))}
