@@ -30,10 +30,11 @@ const App: React.FC = () => {
   const handleKeyPress = (key: string) => {
     if (inputScore.length >= 3) return; // Max 3 digits
     const newScore = inputScore + key;
-    if (parseInt(newScore, 10) > 240) return; // Prevent > 180
+    // 🚨 ここを 180 から 240 に変更してください！
+    if (parseInt(newScore, 10) > 240) return; 
     setInputScore(newScore);
     setAdvice(null);
-  };
+  }
 
   const handleDelete = () => {
     setInputScore((prev) => prev.slice(0, -1));
