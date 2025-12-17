@@ -16,7 +16,7 @@ const App: React.FC = () => {
   const score = parseInt(inputScore, 10);
   
   // Validation limit depends on mode roughly, but let's cap at 180 for UI input safety
-  const isValidScore = !isNaN(score) && score > 0 && score <= 180;
+  const isValidScore = !isNaN(score) && score > 0 && score <= 240;
 
   // Memoize calculation
   const paths: CheckoutPath[] = useMemo(() => {
@@ -28,7 +28,7 @@ const App: React.FC = () => {
   const handleKeyPress = (key: string) => {
     if (inputScore.length >= 3) return; // Max 3 digits
     const newScore = inputScore + key;
-    if (parseInt(newScore, 10) > 180) return; // Prevent > 180
+    if (parseInt(newScore, 10) > 240) return; // Prevent > 180
     setInputScore(newScore);
     setAdvice(null);
   };
